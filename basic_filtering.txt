@@ -1,0 +1,8 @@
+# find all player nodes that have name exact as 'LeBron James'
+match (player: PLAYER) 
+where player.name = 'LeBron James'
+return player
+
+# different ways of queryiing with specific properties
+match (p: PLAYER {name: 'LeBron James'}) 
+return p
