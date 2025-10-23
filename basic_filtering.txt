@@ -6,3 +6,50 @@ return player
 # different ways of queryiing with specific properties
 match (p: PLAYER {name: 'LeBron James'}) 
 return p
+
+# all players taller than 2 (meters)
+match(p:PLAYER)
+where p.height >= 2
+return p
+
+# all players with BMI > 25
+match(p: PLAYER)
+where p.weight / (p.height * p.height) > 25
+return p
+
+# multiple conditions, using AND keyword
+match(p: PLAYER)
+where p.weight >= 100 and p.height <= 2
+return p
+
+match (p:PLAYER)
+where p.weight >= 120 OR p.height >= 2
+return p
+
+# negation
+match (p:PLAYER)
+where NOT p.weight >= 120 OR p.height >= 2.15
+return p
+
+# setting return limit
+match (p:PLAYER)
+where NOT p.weight >= 120 OR p.height >= 2.15
+return p
+limit 5
+
+# using SKIP and LIMIT to simulate paging
+match (p:PLAYER)
+where NOT p.weight >= 120 OR p.height >= 2.15
+return p
+skip 2
+limit 2
+
+# Ordering 
+match (p:PLAYER)
+where p.height > 2
+return p
+order  by p.height desc
+skip 2
+limit 2
+
+
