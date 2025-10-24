@@ -52,4 +52,6 @@ order  by p.height desc
 skip 2
 limit 2
 
-
+# multi node filtering
+match (p: PLAYER), (c: COACH)
+return p, c

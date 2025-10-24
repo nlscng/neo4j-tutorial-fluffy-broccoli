@@ -1,0 +1,7 @@
+match (p: PLAYER) -[:PLAYS_FOR]-> (t: TEAM)
+where t.name = 'LA Lakers'
+return p
+
+# other ways of the same
+match (p: PLAYER) -[:PLAYS_FOR]-> (t: TEAM {name: 'LA Lakers'})
+return p
