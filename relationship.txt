@@ -1,0 +1,27 @@
+match (p: PLAYER) -[:PLAYS_FOR]-> (t: TEAM)
+where t.name = 'LA Lakers'
+return p
+
+# other ways of the same
+match (p: PLAYER) -[:PLAYS_FOR]-> (t: TEAM {name: 'LA Lakers'})
+return p
+
+# players who gets paid more than 35m by a team
+match (p: PLAYER) -[contract:PLAYS_FOR]-> (t: TEAM)
+where contract.salary >= 35000000
+return p, t, contract
+
+# LeBron's teammates
+match (p: PLAYER {name: 'LeBron James'}) -[:TEAMMATES] -> (tm: PLAYER)
+return tm
+
+# LeBron's teammates who makes more than 20m
+match (p: PLAYER {name: 'LeBron James'}) -[:TEAMMATES] -> (tm: PLAYER) -[c:PLAYS_FOR]-> (t: TEAM)
+where c.salary >= 20000000
+return tm, c, t
+
+# alt way of doing the same, using another match 
+match (p: PLAYER {name: 'LeBron James'}) -[:TEAMMATES] -> (tm: PLAYER) 
+match (tm) -[c:PLAYS_FOR] -> (t: TEAM)
+where c.salary >= 20000000
+return tm, c, t

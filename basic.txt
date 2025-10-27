@@ -1,0 +1,14 @@
+# labels are case sensitive, but not keywords or variables.
+match (n: PLAYER) return n
+
+# return all coach nodes
+match(coach: COACH) return coach
+
+# return all teams nodes
+match (t: TEAM) return t
+
+# return all player's name by querying for node's properties
+match (n: PLAYER) return n.name
+
+# return multiple properties, and using alias
+match (n: PLAYER) return n.name, n.age as yrsold, n.height
