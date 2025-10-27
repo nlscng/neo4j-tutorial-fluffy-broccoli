@@ -1,0 +1,13 @@
+# players and their opposing team game count, using the count function.
+match (p: PLAYER) - [gamePlayed:PLAYED_AGAINST] -> (t: TEAM)
+return p.name, count(gamePlayed), t
+
+# average points per game, using the avg function. 
+match (p: PLAYER) - [gamePlayed:PLAYED_AGAINST] -> (t: TEAM)
+return p.name, avg(gamePlayed.points), t
+
+# highest average point per game for players, using order and limit
+match (p: PLAYER) - [gamePlayed:PLAYED_AGAINST] -> (t: TEAM)
+return p.name, avg(gamePlayed.points) as ppg, t
+order by ppg
+limit 1
