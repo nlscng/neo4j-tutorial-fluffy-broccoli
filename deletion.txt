@@ -1,0 +1,16 @@
+# deleting nodes that have name as 'Ja Morant', though this won't work
+# since edges still exist
+match (ja {name: 'Ja Morant'})
+delete ja
+
+# so we need to DETACH DELETE, which removes edges/relationships with the nodes
+match (ja {name: 'Ja Morant'})
+detach delete ja
+
+# deleting relationship/edges, just find/match them and delete
+match (joel {name: 'Joel Embiid'}) - [rel: PLAYS_FOR] -> (:TEAM)
+delete rel
+
+# deleting all nodes and edges in db
+match (n)
+detach delete n
