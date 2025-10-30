@@ -1,0 +1,15 @@
+# find element by id
+match (lebron: PLAYER)
+where elementId(lebron) = '4:ac91c6e6-84a8-4219-af40-ae6e63f7f325:25'
+return lebron
+
+# update, adding another label in this case
+match (lebron: PLAYER)
+where elementId(lebron) = '4:ac91c6e6-84a8-4219-af40-ae6e63f7f325:25'
+set lebron: REF
+return lebron
+
+# Setting a property on an edge
+match (lebron {name: 'LeBron James'}) -[contract: PLAYS_FOR]-> (t: TEAM)
+set contract.salary = 6000000
+return lebron, t, contract

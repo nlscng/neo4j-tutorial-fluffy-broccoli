@@ -1,0 +1,4 @@
+# removing a property
+match (lebron {name: 'LeBron James'}) -[contract: PLAYS_FOR]-> (t: TEAM)
+remove lebron.age
+return lebron
